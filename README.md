@@ -3,6 +3,8 @@
 > **把漂走的你，轻轻拉回来。**
 > 思维强迫（强迫思维/穷思竭虑）发作时的应急引导工具：**打断回路 → 降下焦虑 → 把注意力拉回现实**。
 
+**[English](README.en.md) · 中文**
+
 ![version](https://img.shields.io/badge/version-v0.1-brightgreen) ![license](https://img.shields.io/badge/license-MIT-blue) ![platform](https://img.shields.io/badge/platform-PWA%20%7C%20Mobile%20%7C%20Desktop-lightgrey)
 
 一个 **100% 本地运行、完全离线、数据不出设备** 的开源 PWA。当思维强迫在压力下发作时，一键启动约 5 分钟的引导流程，用有临床依据的技术帮你"刹车"：打断回路 → 生理性呼吸降焦虑 → 感官着陆 → 把念头寄存到"停车场"。
@@ -12,6 +14,12 @@
 ---
 
 ## ✨ 功能总览
+
+### 📸 界面预览
+
+| 主页 | 紧急协议 | 每日练习 | 设置 |
+|---|---|---|---|
+| ![主页](docs/screenshots/home.png) | ![紧急协议](docs/screenshots/protocol.png) | ![每日练习](docs/screenshots/practice.png) | ![设置](docs/screenshots/settings.png) |
 
 ### 🆘 紧急协议（发作时，约 5 分钟，可随时退出）
 

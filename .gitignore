@@ -5,3 +5,8 @@ test_shots/
 __pycache__/
 .DS_Store
 Thumbs.db
+
+# 本地部署/上传工具（含凭据处理逻辑，不进开源仓库）
+scripts/upload_*.sh
+scripts/upload_api.py
+scripts/auto_upload.sh
