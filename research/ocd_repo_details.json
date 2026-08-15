@@ -1,0 +1,149 @@
+{
+ "bchwangk/krishna": {
+  "stars": 0,
+  "desc": "OCD-informed CBT/ERP support chatbot (CLI)",
+  "lang": "Python",
+  "updated": "2026-01-16",
+  "created": "2026-01-15",
+  "topics": []
+ },
+ "jsnicholas/OCDetour": {
+  "stars": 3,
+  "desc": "OCDetour is an app to help delay compulsions for people with OCD.",
+  "lang": "JavaScript",
+  "updated": "2023-07-18",
+  "created": "2023-04-09",
+  "topics": [
+   "api",
+   "full-stack",
+   "graphql",
+   "mern-stack",
+   "ocd",
+   "react"
+  ]
+ },
+ "pushpakcodes/MindEase_OCD_Tracker_and_AI_Companion": {
+  "stars": 3,
+  "desc": "MindEase is a gentle OCD tracking app that helps people understand their moods, triggers, and compulsions through daily check-ins, journaling, and calming visuals. I have made it u",
+  "lang": "JavaScript",
+  "updated": "2026-01-21",
+  "created": "2025-12-23",
+  "topics": []
+ },
+ "EishaRathore/CureOCD": {
+  "stars": 2,
+  "desc": "Virtual reality based exposure therapy for obsessive compulsive disorder",
+  "lang": "Dart",
+  "updated": "2024-05-06",
+  "created": "2021-12-23",
+  "topics": []
+ },
+ "spaciouskarter78/ERPMate": {
+  "stars": 5,
+  "desc": "A software designed to note down data during an ERP session",
+  "lang": "Python",
+  "updated": "2025-08-09",
+  "created": "2023-01-23",
+  "topics": [
+   "erp",
+   "ocd",
+   "python3"
+  ]
+ },
+ "Personalized-Neuromodulation/tDCS_ERP_OCD": {
+  "stars": 1,
+  "desc": "",
+  "lang": "Python",
+  "updated": "2025-03-26",
+  "created": "2025-01-21",
+  "topics": []
+ },
+ "womenhackfornonprofits/ocdaction": {
+  "stars": 18,
+  "desc": "OCD Action App - A collaborative, youth­led project aiming to make use of digital technology to provide mental health support to children &amp; adolescents suffering with anxiety.",
+  "lang": "CSS",
+  "updated": "2026-03-19",
+  "created": "2016-06-15",
+  "topics": []
+ },
+ "IT21219498/MindSculptor_Website": {
+  "stars": 0,
+  "desc": "Advanced OCD Therapy Platform",
+  "lang": "TypeScript",
+  "updated": "2026-05-24",
+  "created": "2025-05-24",
+  "topics": []
+ },
+ "nkranendonk/ocdtherapy": {
+  "stars": 0,
+  "desc": "OCD Behavioral Therapy",
+  "lang": "JavaScript",
+  "updated": "2017-06-10",
+  "created": "2017-06-10",
+  "topics": []
+ },
+ "wondernoodle09/ocdapp": {
+  "stars": 0,
+  "desc": "ERP Therapy based games and tools for OCD management",
+  "lang": "HTML",
+  "updated": "2024-12-24",
+  "created": "2024-12-24",
+  "topics": []
+ },
+ "Hac254/cbt-therapy-ocd-tool": {
+  "stars": 0,
+  "desc": "",
+  "lang": "TypeScript",
+  "updated": "2025-02-05",
+  "created": "2025-02-05",
+  "topics": []
+ },
+ "caldwellpatrickh/ocd-practice": {
+  "stars": 0,
+  "desc": "OCD daily practice and ERP tracking tool",
+  "lang": "HTML",
+  "updated": "2026-08-06",
+  "created": "2026-08-06",
+  "topics": []
+ },
+ "xemura/ocd-simulator": {
+  "stars": null,
+  "desc": "",
+  "lang": null,
+  "updated": "",
+  "created": "",
+  "topics": []
+ },
+ "feline-felicity/ocd-helper": {
+  "stars": null,
+  "desc": "",
+  "lang": null,
+  "updated": "",
+  "created": "",
+  "topics": []
+ },
+ "BIDMCDigitalPsychiatry/LAMP-Mobile": {
+  "stars": null,
+  "desc": "",
+  "lang": null,
+  "updated": "",
+  "created": "",
+  "topics": []
+ },
+ "BIDMCDigitalPsychiatry/LAMP-platform": {
+  "stars": 15,
+  "desc": "The LAMP Platform (issues and documentation).",
+  "lang": "TypeScript",
+  "updated": "2026-07-27",
+  "created": "2020-11-09",
+  "topics": []
+ },
+ "ChildMindInstitute/MindLogger": {
+  "stars": null,
+  "desc": "",
+  "lang": null,
+  "updated": "",
+  "created": "",
+  "topics": []
+ }
+}

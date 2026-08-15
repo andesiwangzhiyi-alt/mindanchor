@@ -1,0 +1,7 @@
+# 忽略：本地运行时产物、第三方下载、测试截图
+ocd_repos/
+test_shots/
+*.pyc
+__pycache__/
+.DS_Store
+Thumbs.db

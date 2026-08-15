@@ -1,0 +1,326 @@
+{
+ "github_api_ok": true,
+ "github": [
+  {
+   "name": "adamjakab/BeetsPluginXtractor",
+   "stars": 77,
+   "desc": "A beets plugin for obsessive-compulsive music geeks to add low and high level musical information to their songs.",
+   "lang": "Python",
+   "url": "https://github.com/adamjakab/BeetsPluginXtractor",
+   "updated": "2026-08-04"
+  },
+  {
+   "name": "dblock/obcd",
+   "stars": 43,
+   "desc": "Deal with obsessive compulsive issues of programmers in Objective-C.",
+   "lang": "Ruby",
+   "url": "https://github.com/dblock/obcd",
+   "updated": "2026-06-12"
+  },
+  {
+   "name": "adamjakab/BeetsPluginBpmAnalyser",
+   "stars": 40,
+   "desc": "A beets plugin for obsessive-compulsive music geeks to add BPM information to their songs.",
+   "lang": "Python",
+   "url": "https://github.com/adamjakab/BeetsPluginBpmAnalyser",
+   "updated": "2026-05-03"
+  },
+  {
+   "name": "mujiyantosvc/Facial-Expression-Recognition-FER-for-Mental-Health-Detection-",
+   "stars": 39,
+   "desc": " Facial Expression Recognition (FER) for Mental Health Detection applies AI models like Swin Transformer, CNN, and ViT for detecting emotions linked to anxiety,",
+   "lang": "Python",
+   "url": "https://github.com/mujiyantosvc/Facial-Expression-Recognition-FER-for-Mental-Health-Detection-",
+   "updated": "2026-07-18"
+  },
+  {
+   "name": "adamjakab/BeetsPluginDescribe",
+   "stars": 29,
+   "desc": "A beets plugin for obsessive-compulsive music geeks to describe what's in their library.",
+   "lang": "Python",
+   "url": "https://github.com/adamjakab/BeetsPluginDescribe",
+   "updated": "2026-06-17"
+  },
+  {
+   "name": "0xb0bb/0CD",
+   "stars": 25,
+   "desc": "BinaryNinja plugin to introduce some quality of life utilities for obsessive compulsive CTF enthusiasts",
+   "lang": "Python",
+   "url": "https://github.com/0xb0bb/0CD",
+   "updated": "2026-05-31"
+  },
+  {
+   "name": "rimblas/ocd-table-reorderer",
+   "stars": 23,
+   "desc": "Simple APEX App with Drag &amp; Drop functionality to re-order the columns on an Oracle table",
+   "lang": "JavaScript",
+   "url": "https://github.com/rimblas/ocd-table-reorderer",
+   "updated": "2025-11-29"
+  },
+  {
+   "name": "owncloud-archive/ocdev",
+   "stars": 21,
+   "desc": "a tool for creating app templates and setting up installations from git",
+   "lang": "Python",
+   "url": "https://github.com/owncloud-archive/ocdev",
+   "updated": "2021-04-21"
+  },
+  {
+   "name": "womenhackfornonprofits/ocdaction",
+   "stars": 18,
+   "desc": "OCD Action App - A collaborative, youth­led project aiming to make use of digital technology to provide mental health support to children &amp; adolescents suff",
+   "lang": "CSS",
+   "url": "https://github.com/womenhackfornonprofits/ocdaction",
+   "updated": "2026-03-19"
+  },
+  {
+   "name": "adamjakab/BeetsPluginYearFixer",
+   "stars": 17,
+   "desc": "A beets plugin for obsessive-compulsive music geeks to fix missing album release date.",
+   "lang": "Python",
+   "url": "https://github.com/adamjakab/BeetsPluginYearFixer",
+   "updated": "2026-05-03"
+  },
+  {
+   "name": "adamjakab/BeetsPluginAutofix",
+   "stars": 16,
+   "desc": "A beets plugin for obsessive-compulsive music geeks to run repetitive tasks all in one go.",
+   "lang": "Python",
+   "url": "https://github.com/adamjakab/BeetsPluginAutofix",
+   "updated": "2026-05-03"
+  },
+  {
+   "name": "adamjakab/BeetsPluginGoingRunning",
+   "stars": 14,
+   "desc": "Beets plugin for obsessive-compulsive music geek runners.",
+   "lang": "Python",
+   "url": "https://github.com/adamjakab/BeetsPluginGoingRunning",
+   "updated": "2026-04-14"
+  },
+  {
+   "name": "SiriNandinii/MindScopeAI-Intelligent-Mental-Health-Domain-Classification",
+   "stars": 7,
+   "desc": "MindScopeAI is an AI-powered NLP system that uses transformer models to accurately classify mental health queries into key psychological domains like anxiety, d",
+   "lang": "Jupyter Notebook",
+   "url": "https://github.com/SiriNandinii/MindScopeAI-Intelligent-Mental-Health-Domain-Classification",
+   "updated": "2026-07-11"
+  },
+  {
+   "name": "spaciouskarter78/ERPMate",
+   "stars": 5,
+   "desc": "A software designed to note down data during an ERP session",
+   "lang": "Python",
+   "url": "https://github.com/spaciouskarter78/ERPMate",
+   "updated": "2025-08-09"
+  },
+  {
+   "name": "gitter-badger/ocdownloader",
+   "stars": 4,
+   "desc": "OwnCloud Apps - ocDownloader allows to retrieve files with multi-protocols using ARIA2",
+   "lang": "PHP",
+   "url": "https://github.com/gitter-badger/ocdownloader",
+   "updated": "2026-07-10"
+  },
+  {
+   "name": "bladeacer/ocd",
+   "stars": 4,
+   "desc": "Not affiliated with obsidian.md, just a means to extract and quickly compare changes in app.css across Obsidian versions.",
+   "lang": "Go",
+   "url": "https://github.com/bladeacer/ocd",
+   "updated": "2026-07-31"
+  },
+  {
+   "name": "liao3841054/AppDelegateOCDemo",
+   "stars": 4,
+   "desc": "简化AppDelegate，采用组合模式拆分AppDelegate业务和功能",
+   "lang": "Objective-C",
+   "url": "https://github.com/liao3841054/AppDelegateOCDemo",
+   "updated": "2020-12-23"
+  },
+  {
+   "name": "pushpakcodes/MindEase_OCD_Tracker_and_AI_Companion",
+   "stars": 3,
+   "desc": "MindEase is a gentle OCD tracking app that helps people understand their moods, triggers, and compulsions through daily check-ins, journaling, and calming visua",
+   "lang": "JavaScript",
+   "url": "https://github.com/pushpakcodes/MindEase_OCD_Tracker_and_AI_Companion",
+   "updated": "2026-01-21"
+  },
+  {
+   "name": "jsnicholas/OCDetour",
+   "stars": 3,
+   "desc": "OCDetour is an app to help delay compulsions for people with OCD.",
+   "lang": "JavaScript",
+   "url": "https://github.com/jsnicholas/OCDetour",
+   "updated": "2023-07-18"
+  },
+  {
+   "name": "EishaRathore/CureOCD",
+   "stars": 2,
+   "desc": "Virtual reality based exposure therapy for obsessive compulsive disorder",
+   "lang": "Dart",
+   "url": "https://github.com/EishaRathore/CureOCD",
+   "updated": "2024-05-06"
+  },
+  {
+   "name": "sm5190/Opinion-Mining-PR",
+   "stars": 2,
+   "desc": "An Exploratory Data Analysis based project to reflect public opinion related to common mental health problems such as anxiety, depression, OCD, schizophrenia, P",
+   "lang": "Jupyter Notebook",
+   "url": "https://github.com/sm5190/Opinion-Mining-PR",
+   "updated": "2025-09-04"
+  },
+  {
+   "name": "Vlack-Fangy/Session2Note-Deterministic",
+   "stars": 1,
+   "desc": "Designed a deterministic data processing pipeline. Synthesize five (Depression, Anxiety, Schizophre- nia, Bipolar disorder, OCD) raw therapy session transcript ",
+   "lang": "Python",
+   "url": "https://github.com/Vlack-Fangy/Session2Note-Deterministic",
+   "updated": "2026-02-21"
+  },
+  {
+   "name": "AdityaTripathi-Tech/AI_Powered_Mental_Wellness",
+   "stars": 1,
+   "desc": "Mentality – The Way to Beyond is an AI-powered CBT platform built with Gemini AI, Firebase, and Blockchain to detect and heal mental disorders like PTSD, OCD, a",
+   "lang": "HTML",
+   "url": "https://github.com/AdityaTripathi-Tech/AI_Powered_Mental_Wellness",
+   "updated": "2026-03-31"
+  },
+  {
+   "name": "Personalized-Neuromodulation/tDCS_ERP_OCD",
+   "stars": 1,
+   "desc": "",
+   "lang": "Python",
+   "url": "https://github.com/Personalized-Neuromodulation/tDCS_ERP_OCD",
+   "updated": "2025-03-26"
+  },
+  {
+   "name": "kusumarc6-gif/OCD-HealthLens-Mental-Health-Analytics-Dashboard",
+   "stars": 1,
+   "desc": "",
+   "lang": null,
+   "url": "https://github.com/kusumarc6-gif/OCD-HealthLens-Mental-Health-Analytics-Dashboard",
+   "updated": "2026-05-26"
+  },
+  {
+   "name": "geethaalampally/mental-health-domain-classifier",
+   "stars": 1,
+   "desc": "A deep learning-based NLP project that classifies mental health-related questions into four domains: Anxiety, Depression, Trauma, and OCD.",
+   "lang": "Python",
+   "url": "https://github.com/geethaalampally/mental-health-domain-classifier",
+   "updated": "2026-07-05"
+  },
+  {
+   "name": "EleazarMartin/Music-Listening-Habits-and-Mental-Health",
+   "stars": 1,
+   "desc": "Analysis with visualizations on the relationship between music preferences and self-reported mental-health (Anxiety, Depression, OCD, Insomnia). **Clickable lin",
+   "lang": null,
+   "url": "https://github.com/EleazarMartin/Music-Listening-Habits-and-Mental-Health",
+   "updated": "2025-03-09"
+  },
+  {
+   "name": "skytells-research/ocd-detector",
+   "stars": 1,
+   "desc": "🧠 Advanced OCD pattern detection platform that processes text, images, and voice inputs. Empowering mental health professionals with AI-driven insights through ",
+   "lang": "Python",
+   "url": "https://github.com/skytells-research/ocd-detector",
+   "updated": "2024-11-13"
+  },
+  {
+   "name": "garyskeete/coding-for-counterterrorism-and-crime-prevention-also-safety-measures",
+   "stars": 1,
+   "desc": "Police Computer Programming Search Templates Tracing all avenues pathways traffic videos for calculated clues  In the operon similar traits occurrences informat",
+   "lang": null,
+   "url": "https://github.com/garyskeete/coding-for-counterterrorism-and-crime-prevention-also-safety-measures",
+   "updated": "2018-08-19"
+  },
+  {
+   "name": "nkranendonk/ocdtherapy",
+   "stars": 0,
+   "desc": "OCD Behavioral Therapy",
+   "lang": "JavaScript",
+   "url": "https://github.com/nkranendonk/ocdtherapy",
+   "updated": "2017-06-10"
+  },
+  {
+   "name": "IT21219498/MindSculptor_Website",
+   "stars": 0,
+   "desc": "Advanced OCD Therapy Platform",
+   "lang": "TypeScript",
+   "url": "https://github.com/IT21219498/MindSculptor_Website",
+   "updated": "2026-05-24"
+  },
+  {
+   "name": "Hac254/cbt-therapy-ocd-tool",
+   "stars": 0,
+   "desc": "",
+   "lang": "TypeScript",
+   "url": "https://github.com/Hac254/cbt-therapy-ocd-tool",
+   "updated": "2025-02-05"
+  },
+  {
+   "name": "wondernoodle09/ocdapp",
+   "stars": 0,
+   "desc": "ERP Therapy based games and tools for OCD management",
+   "lang": "HTML",
+   "url": "https://github.com/wondernoodle09/ocdapp",
+   "updated": "2024-12-24"
+  },
+  {
+   "name": "ThushariLiyanage/OCD-AI-Therapy-Assistant",
+   "stars": 0,
+   "desc": "",
+   "lang": null,
+   "url": "https://github.com/ThushariLiyanage/OCD-AI-Therapy-Assistant",
+   "updated": "2025-11-26"
+  },
+  {
+   "name": "bchwangk/krishna",
+   "stars": 0,
+   "desc": "OCD-informed CBT/ERP support chatbot (CLI)",
+   "lang": "Python",
+   "url": "https://github.com/bchwangk/krishna",
+   "updated": "2026-01-16"
+  },
+  {
+   "name": "Hippieatheart/OCD-CBT-Models",
+   "stars": 0,
+   "desc": "",
+   "lang": null,
+   "url": "https://github.com/Hippieatheart/OCD-CBT-Models",
+   "updated": "2018-01-19"
+  },
+  {
+   "name": "stephiewahome-hue/cbt-and-erp-app-for-stephie",
+   "stars": 0,
+   "desc": "im creating an app to monitor mdd and ocd and other mental illnesses",
+   "lang": null,
+   "url": "https://github.com/stephiewahome-hue/cbt-and-erp-app-for-stephie",
+   "updated": "2026-05-20"
+  },
+  {
+   "name": "zapo1234/projet_ocd",
+   "stars": 0,
+   "desc": "developpement ERP hotel, appartement locatives",
+   "lang": null,
+   "url": "https://github.com/zapo1234/projet_ocd",
+   "updated": "2022-01-22"
+  },
+  {
+   "name": "caldwellpatrickh/ocd-practice",
+   "stars": 0,
+   "desc": "OCD daily practice and ERP tracking tool",
+   "lang": "HTML",
+   "url": "https://github.com/caldwellpatrickh/ocd-practice",
+   "updated": "2026-08-06"
+  },
+  {
+   "name": "dianandussan/ocd-erp-rubrics",
+   "stars": 0,
+   "desc": "Rubrics for Instructional Design Minicourse: ERP for OCD ",
+   "lang": "HTML",
+   "url": "https://github.com/dianandussan/ocd-erp-rubrics",
+   "updated": "2025-09-29"
+  }
+ ],
+ "ddg": []
+}

@@ -1,0 +1,133 @@
+{
+ "ocd": [
+  {
+   "name": "SaeedNajafi",
+   "desc": "Implementation of the Optimal Completion Distillation for Sequence Labeling",
+   "stars": ""
+  },
+  {
+   "name": "michg",
+   "desc": "A Blender addon for generating customizable Gridfinity base tiles with optional magnet holes.",
+   "stars": ""
+  },
+  {
+   "name": "LokibeatsThor",
+   "desc": "A local-first cognitive substrate for neurodivergent professionals. Gives Claude memory, a sense of time, a translator for corporate ambiguity, and a ",
+   "stars": ""
+  },
+  {
+   "name": "AntoniSofron",
+   "desc": "On Chip Debugger application for AURIX",
+   "stars": ""
+  },
+  {
+   "name": "tlennon-ie",
+   "desc": "A software designed to note down data during an ERP session",
+   "stars": ""
+  },
+  {
+   "name": "feline-felicity",
+   "desc": "The aim of this project is to make the assessment and treatment of OCD more accessible and effective.",
+   "stars": ""
+  },
+  {
+   "name": "aurixinino",
+   "desc": "RP2040 firmware for RL78 OCD research, glitch orchestration, and syscon dump capture tooling.",
+   "stars": ""
+  },
+  {
+   "name": "maskedsyntax",
+   "desc": "Rack for tacktix small parts ocd boxes",
+   "stars": ""
+  },
+  {
+   "name": "spaciouskarter78",
+   "desc": "Auto readonly, undead property creation and more",
+   "stars": ""
+  },
+  {
+   "name": "jsnicholas",
+   "desc": "A python tool to dynamically download, edit, tag, and rename files/folders.",
+   "stars": ""
+  },
+  {
+   "name": "Lando-L",
+   "desc": "",
+   "stars": ""
+  },
+  {
+   "name": "AurelienGasser",
+   "desc": "",
+   "stars": ""
+  },
+  {
+   "name": "seuros",
+   "desc": "",
+   "stars": ""
+  },
+  {
+   "name": "octacian",
+   "desc": "",
+   "stars": ""
+  },
+  {
+   "name": "sthysel-shop",
+   "desc": "",
+   "stars": ""
+  },
+  {
+   "name": "CrazyCoder009",
+   "desc": "",
+   "stars": ""
+  },
+  {
+   "name": "neurobin",
+   "desc": "",
+   "stars": ""
+  },
+  {
+   "name": "BlythMeister",
+   "desc": "",
+   "stars": ""
+  },
+  {
+   "name": "robinawilliams",
+   "desc": "",
+   "stars": ""
+  },
+  {
+   "name": "64BitUniverse",
+   "desc": "",
+   "stars": ""
+  }
+ ],
+ "ocd-mental-health": [],
+ "obsessive-compulsive-disorder": [
+  {
+   "name": "pulkitgoyal56",
+   "desc": "Computational Modeling of Goal-directed and Habitual Behavior in Obsessive Compulsive Disorder using Active Inference and Reinforcement Learning",
+   "stars": ""
+  },
+  {
+   "name": "pulkitgoyal56",
+   "desc": "Application to support patients with Obsessive-Compulsive Disorder",
+   "stars": ""
+  },
+  {
+   "name": "xemura",
+   "desc": "A console software which simulates how mind and OCD works together",
+   "stars": ""
+  },
+  {
+   "name": "navalnica",
+   "desc": "",
+   "stars": ""
+  },
+  {
+   "name": "Benrhu",
+   "desc": "",
+   "stars": ""
+  }
+ ],
+ "ocd-app": []
+}
