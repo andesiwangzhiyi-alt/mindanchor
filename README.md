@@ -49,6 +49,14 @@
 
 ---
 
+## 🌐 在线试用
+
+**无需安装，浏览器直接打开：** <https://andesiwangzhiyi-alt.github.io/mindanchor/>
+
+数据只存在你自己的浏览器里，用完即走。
+
+---
+
 ## 🚀 快速开始
 
 ### 电脑
