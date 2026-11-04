@@ -7,7 +7,7 @@ import time, os
 OUT = 'C:/Users/25671/mindanchor/test_shots'
 os.makedirs(OUT, exist_ok=True)
 CHROME = r'C:\Program Files\Google\Chrome\Application\chrome.exe'
-URL = 'http://127.0.0.1:8123/index.html'
+URL = os.environ.get('MA_URL', 'http://127.0.0.1:8123/index.html')  # 传 MA_URL 可直接验收线上 Pages
 errors, fails = [], []
 
 
@@ -18,7 +18,7 @@ def check(name, cond, extra=''):
 
 
 with sync_playwright() as p:
-    browser = p.chromium.launch(executable_path=CHROME, headless=True, args=['--no-sandbox'])
+    browser = p.chromium.launch(executable_path=CHROME, headless=True, args=['--no-sandbox', '--no-proxy-server', '--proxy-bypass-list=*'])
     ctx = browser.new_context(viewport={'width': 390, 'height': 844})
     page = ctx.new_page()
     page.on('console', lambda m: errors.append(f'console[{m.type}]: {m.text}') if m.type == 'error' else None)
