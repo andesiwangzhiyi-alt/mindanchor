@@ -1,5 +1,5 @@
 /* 锚 MindAnchor — Service Worker：缓存全部资源，实现完全离线可用 */
-var CACHE = 'mindanchor-v2';
+var CACHE = 'mindanchor-0.2.0';
 var ASSETS = [
   './',
   './index.html',

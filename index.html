@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0d1017">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="description" content="锚 MindAnchor v0.1 —— 思维强迫发作时的应急引导工具：打断回路、降下焦虑、把注意力拉回现实。">
+<meta name="description" content="锚 MindAnchor v0.2 —— 思维强迫的应急与备考工具：念头分流、60 秒打断、预期练习、担忧时间、专注舱。数据只存在本机。">
 <title>锚 · MindAnchor</title>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icons/icon-192.png">
@@ -289,6 +289,224 @@
   .back{background:var(--bg2);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:14px;}
   .version{text-align:center;font-size:11px;color:var(--dim);opacity:.6;margin-top:26px;letter-spacing:1px;}
 
+  /* ================================================================
+     v0.2 备考模式
+     分流器 / 预期练习 / 专注舱 / 担忧时间 / 灾难链 / 60 秒紧急版
+     ================================================================ */
+
+  /* ---------- 底部导航 ---------- */
+  #tabbar{
+    position:fixed;left:0;right:0;bottom:0;z-index:60;display:flex;
+    background:rgba(13,16,23,.94);
+    -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+    border-top:1px solid var(--line);
+    padding:6px 4px calc(6px + env(safe-area-inset-bottom));
+  }
+  #tabbar button{
+    flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;
+    background:none;border:none;color:var(--dim);font-size:11px;
+    padding:7px 0;border-radius:14px;transition:color .18s,transform .12s;
+  }
+  #tabbar button .ic{font-size:20px;line-height:1.15;}
+  #tabbar button.sel{color:var(--accent2);}
+  #tabbar button.sel .ic{filter:drop-shadow(0 0 9px rgba(78,201,176,.6));}
+  #tabbar button:active{transform:scale(.93);}
+  .wrap{padding-bottom:calc(94px + env(safe-area-inset-bottom));}
+
+  /* ---------- 压力期模式 ---------- */
+  body.ddl .ddl-hide{display:none!important;}
+  .ddl-bar{
+    display:flex;align-items:center;gap:10px;padding:12px 14px;margin-bottom:14px;
+    background:linear-gradient(135deg,rgba(255,178,60,.14),rgba(255,178,60,.05));
+    border:1px solid rgba(255,178,60,.38);border-radius:14px;font-size:13px;line-height:1.6;color:#ffd9a0;
+  }
+  .ddl-bar .sw-t{margin-left:auto;font-size:12px;color:var(--dim);flex-shrink:0;}
+
+  /* ---------- 分流器 ---------- */
+  .tri-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:22px 20px;animation:slideUp .28s cubic-bezier(.2,.8,.3,1);
+  }
+  @keyframes slideUp{from{opacity:0;transform:translateY(14px);}to{opacity:1;transform:none;}}
+  .tri-progress{
+    display:inline-block;font-size:12px;color:var(--accent2);letter-spacing:1px;
+    background:rgba(78,201,176,.12);border:1px solid rgba(78,201,176,.3);
+    border-radius:999px;padding:3px 12px;margin-bottom:14px;
+  }
+  .tri-q{font-size:22px;font-weight:800;line-height:1.5;letter-spacing:.5px;margin-bottom:10px;}
+  .tri-hint{font-size:13px;color:var(--dim);line-height:1.8;margin-bottom:16px;}
+  .tri-ta{
+    width:100%;min-height:96px;background:var(--bg2);border:1px solid var(--line);
+    border-radius:14px;color:var(--fg);font-size:16px;padding:14px;resize:vertical;
+    line-height:1.7;margin-bottom:16px;
+  }
+  .tri-ta:focus{outline:none;border-color:var(--accent);}
+  .tri-choice{
+    display:flex;flex-direction:column;align-items:flex-start;gap:4px;width:100%;
+    background:var(--bg2);border:1px solid var(--line);border-radius:16px;
+    padding:16px 18px;margin-bottom:10px;text-align:left;
+    transition:border-color .18s,transform .1s,background .18s;
+  }
+  .tri-choice:active{transform:scale(.985);}
+  .tri-choice b{font-size:17px;font-weight:800;color:var(--fg);}
+  .tri-choice span{font-size:13px;color:var(--dim);line-height:1.6;}
+  .tri-choice.ok{border-color:rgba(78,201,176,.45);background:rgba(78,201,176,.07);}
+  .tri-choice.ok b{color:var(--accent2);}
+  .tri-done{text-align:center;padding:14px 4px 4px;animation:slideUp .3s;}
+  .tri-done .ic{
+    width:76px;height:76px;margin:0 auto 18px;border-radius:50%;
+    background:rgba(78,201,176,.12);border:2px solid var(--accent);
+    display:flex;align-items:center;justify-content:center;font-size:34px;color:var(--accent2);
+  }
+  .tri-done .t{font-size:22px;font-weight:800;letter-spacing:.5px;margin-bottom:12px;}
+  .tri-done .copy{
+    font-size:14px;line-height:1.9;color:var(--accent2);
+    background:rgba(78,201,176,.08);border-left:3px solid var(--accent);
+    border-radius:0 12px 12px 0;padding:14px 16px;text-align:left;margin-bottom:16px;
+  }
+  .tri-done .meta{font-size:13px;color:var(--dim);line-height:1.8;margin-bottom:18px;}
+  .chip-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+
+  /* ---------- 通用小部件 ---------- */
+  .sec-title{font-size:15px;font-weight:700;margin:22px 0 10px;display:flex;align-items:center;gap:8px;}
+  .sec-title .cnt{font-size:12px;font-weight:600;color:var(--dim);}
+  .item{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:14px 16px;margin-bottom:10px;
+  }
+  .item .top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:6px;}
+  .item .tx{font-size:15px;line-height:1.7;word-break:break-word;}
+  .item .mt{font-size:12px;color:var(--dim);margin-top:6px;line-height:1.6;}
+  .pill{
+    font-size:11px;font-weight:700;border-radius:999px;padding:3px 10px;white-space:nowrap;
+    background:var(--bg2);border:1px solid var(--line);color:var(--dim);
+  }
+  .pill.acc{background:rgba(78,201,176,.14);border-color:rgba(78,201,176,.4);color:var(--accent2);}
+  .pill.warn{background:rgba(255,178,60,.14);border-color:rgba(255,178,60,.4);color:#ffb23c;}
+  .pill.done{background:rgba(78,201,176,.1);border-color:rgba(78,201,176,.28);color:var(--accent2);opacity:.75;}
+  .mini-btn{
+    background:var(--bg2);border:1px solid var(--line);border-radius:11px;
+    padding:8px 14px;font-size:13px;color:var(--fg);transition:transform .1s,border-color .18s;
+  }
+  .mini-btn:active{transform:scale(.95);}
+  .mini-btn.acc{border-color:rgba(78,201,176,.45);color:var(--accent2);}
+  .empty-soft{text-align:center;color:var(--dim);font-size:13px;line-height:2;padding:26px 10px;}
+
+  /* ---------- 预期练习 ---------- */
+  .conf-wrap{margin:6px 0 4px;}
+  .conf-val{font-size:34px;font-weight:800;color:var(--accent2);text-align:center;font-variant-numeric:tabular-nums;}
+  .conf-val small{font-size:15px;color:var(--dim);font-weight:600;}
+  .ev-pair{display:flex;gap:12px;margin:14px 0;}
+  .ev-box{
+    flex:1;background:var(--bg2);border:1px solid var(--line);border-radius:14px;
+    padding:14px;text-align:center;
+  }
+  .ev-box .l{font-size:11px;color:var(--dim);letter-spacing:1px;margin-bottom:6px;}
+  .ev-box .n{font-size:32px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--accent2);}
+  .ev-box .n.before{color:var(--dim);}
+  .ev-delta{
+    text-align:center;padding:14px;border-radius:14px;margin-bottom:12px;
+    background:linear-gradient(135deg,rgba(78,201,176,.16),rgba(78,201,176,.05));
+    border:1px solid rgba(78,201,176,.4);
+  }
+  .ev-delta .big{font-size:30px;font-weight:900;color:var(--accent2);font-variant-numeric:tabular-nums;}
+  .ev-delta .cap{font-size:13px;color:var(--dim);margin-top:4px;line-height:1.7;}
+  .ev-quote{
+    font-size:14px;line-height:1.9;color:var(--accent2);padding:12px 14px;
+    background:rgba(78,201,176,.07);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;
+  }
+
+  /* ---------- 专注舱 ---------- */
+  .focus-ring{width:210px;height:210px;position:relative;margin:6px auto 16px;}
+  .focus-ring svg{transform:rotate(-90deg);}
+  .focus-ring circle{fill:none;stroke:var(--line);stroke-width:9;}
+  .focus-ring circle.bar{stroke:var(--accent);stroke-linecap:round;transition:stroke-dashoffset 1s linear;}
+  .focus-ring .t{
+    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    font-size:42px;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:1px;
+  }
+  .focus-ring .t small{font-size:12px;font-weight:600;color:var(--dim);letter-spacing:2px;margin-top:4px;}
+  .mark-btn{
+    display:flex;flex-direction:column;align-items:center;gap:3px;width:100%;
+    background:var(--bg2);border:1px solid var(--line);border-radius:16px;
+    padding:16px;font-size:16px;font-weight:700;transition:transform .1s,border-color .18s;
+  }
+  .mark-btn:active{transform:scale(.97);border-color:var(--accent);}
+  .mark-btn small{font-size:12px;font-weight:500;color:var(--dim);}
+  .mark-dots{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;min-height:14px;margin:14px 0 4px;}
+  .mark-dots i{
+    width:9px;height:9px;border-radius:50%;background:var(--accent);
+    opacity:.85;animation:pop .3s ease;
+  }
+  @keyframes pop{from{transform:scale(0);}to{transform:scale(1);}}
+  .focus-note{font-size:13px;color:var(--dim);line-height:1.8;text-align:center;margin-top:10px;}
+
+  /* ---------- 担忧时间 ---------- */
+  .worry-clock{
+    font-size:52px;font-weight:800;text-align:center;font-variant-numeric:tabular-nums;
+    color:var(--accent2);letter-spacing:2px;margin:8px 0;
+  }
+  .worry-item{
+    background:var(--bg2);border:1px solid var(--line);border-radius:14px;
+    padding:14px;margin-bottom:10px;
+  }
+  .worry-item .tx{font-size:15px;line-height:1.7;margin-bottom:12px;}
+  .worry-item .ops{display:flex;gap:8px;flex-wrap:wrap;}
+
+  /* ---------- 灾难链 ---------- */
+  .chain-step{
+    display:flex;gap:12px;align-items:flex-start;padding:12px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .chain-step:last-child{border-bottom:none;}
+  .chain-idx{
+    width:26px;height:26px;border-radius:9px;flex-shrink:0;margin-top:1px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:12px;font-weight:800;background:var(--bg2);border:1px solid var(--line);color:var(--dim);
+  }
+  .chain-idx.real{background:rgba(78,201,176,.15);border-color:var(--accent);color:var(--accent2);}
+  .chain-body{flex:1;font-size:14px;line-height:1.7;}
+  .chain-tag{font-size:11px;color:var(--dim);margin-top:4px;letter-spacing:.5px;}
+  .chain-tag.spec{color:#ffb23c;}
+
+  /* ---------- 60 秒紧急版 ---------- */
+  #overlay60{
+    position:fixed;inset:0;z-index:110;display:none;flex-direction:column;
+    background:var(--bg);padding:calc(24px + env(safe-area-inset-top)) 24px calc(24px + env(safe-area-inset-bottom));
+  }
+  #overlay60.active{display:flex;animation:fadeIn .2s ease;}
+  .q60-bar{height:4px;border-radius:2px;background:var(--line);overflow:hidden;margin-bottom:6px;}
+  .q60-bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s linear;}
+  .q60-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+  .q60-body .big{font-size:58px;font-weight:900;letter-spacing:8px;margin-bottom:16px;}
+  .q60-body .mid{font-size:22px;font-weight:700;line-height:1.6;margin-bottom:12px;}
+  .q60-body .sub{font-size:15px;color:var(--dim);line-height:1.9;max-width:330px;}
+  .q60-body .quote{
+    font-size:14px;line-height:1.9;color:var(--accent2);padding:13px 16px;margin-top:16px;
+    background:rgba(78,201,176,.08);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;text-align:left;
+  }
+  .q60-bubble{
+    width:170px;height:170px;border-radius:50%;position:relative;
+    background:radial-gradient(circle at 50% 40%,#1e3a44,#0f222c 70%);
+    border:2px solid rgba(78,201,176,.35);
+    transition:transform 1s cubic-bezier(.45,.05,.4,1);transform:scale(.55);
+  }
+  .q60-bubble.p1{transform:scale(1.3);}
+  .q60-bubble.p2{transform:scale(1.45);}
+  .q60-bubble.p3{transform:scale(.6);}
+
+  /* ---------- 首页 v0.2 ---------- */
+  .hero-actions{display:flex;gap:10px;margin-top:12px;}
+  .hero-actions .btn{flex:1;padding:13px 10px;font-size:14px;flex-direction:column;gap:3px;}
+  .hero-actions .btn small{font-size:11px;font-weight:500;opacity:.75;}
+  .stat-inline{display:flex;gap:10px;margin-top:14px;}
+  .stat-inline div{
+    flex:1;background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:12px;text-align:center;
+  }
+  .stat-inline .v{font-size:22px;font-weight:800;color:var(--accent2);font-variant-numeric:tabular-nums;}
+  .stat-inline .k{font-size:11px;color:var(--dim);margin-top:3px;}
+
   @media (prefers-reduced-motion: reduce){
     *{animation:none!important;transition:none!important;}
   }
@@ -304,10 +522,17 @@
       <h1>锚</h1>
       <p class="sub">把漂走的你，轻轻拉回来。</p>
     </div>
+    <div id="home-ddl"></div>
     <div class="home-cta">
-      <button class="btn primary block" onclick="startProtocol()">现在就需要帮助</button>
-      <p class="home-note">约 5 分钟 · 全程语音引导 · 可随时退出</p>
+      <button class="btn primary block" onclick="startMainHelp()">现在就需要帮助</button>
+      <p class="home-note" id="home-cta-note">约 5 分钟 · 全程语音引导 · 可随时退出</p>
+      <div class="hero-actions">
+        <button class="btn" onclick="startQuick()">⚡ 60 秒版<small>正在做题时用</small></button>
+        <button class="btn" onclick="showView('view-triage')">🧭 念头分流<small>先判断该不该处理</small></button>
+      </div>
     </div>
+    <div id="home-quick"></div>
+    <div id="home-stats" class="stat-inline"></div>
     <div class="followup" id="followup-card">
       <div class="t">⏱ 有一个待回访的焦虑记录</div>
       <div class="d" id="followup-desc"></div>
@@ -316,6 +541,9 @@
     <div class="home-links">
       <button class="btn" onclick="showView('view-practice')">🧘 每日练习</button>
       <button class="btn" onclick="showView('view-ladder')">🪜 暴露阶梯</button>
+      <button class="btn" onclick="showView('view-expect')">🎯 预期练习</button>
+      <button class="btn" onclick="showView('view-worry')">🕘 担忧时间</button>
+      <button class="btn" onclick="showView('view-chain')">🔗 灾难链</button>
       <button class="btn" onclick="showView('view-history')">📈 历史记录</button>
       <button class="btn" onclick="showView('view-settings')">⚙️ 设置</button>
     </div>
@@ -332,7 +560,7 @@
     <div class="practice-intro">
       <h2>5 分钟微训练</h2>
       <p>每天一次，练习与念头相处的新方式。<br>这不是为了消除念头，而是改变你和念头的关系。</p>
-      <span class="streak" id="streak-el">🔥 连续 0 天</span>
+      <span class="streak ddl-hide" id="streak-el">🔥 连续 0 天</span>
     </div>
     <div class="card">
       <div class="ptimer">
@@ -434,7 +662,7 @@
 <div id="view-history" class="view">
   <div class="wrap">
     <div class="page-title"><button class="back" onclick="showView('view-home')">←</button>历史记录</div>
-    <div class="stat-grid">
+    <div class="stat-grid ddl-hide">
       <div class="stat"><div class="v" id="st-count">–</div><div class="k">最近 7 天发作次数</div></div>
       <div class="stat"><div class="v" id="st-avg">–</div><div class="k">平均 SUDS（0-100）</div></div>
     </div>
@@ -486,13 +714,49 @@
       <input type="text" id="in-aimodel" placeholder="模型名，如 claude-sonnet-4-6">
       <button class="btn small block" onclick="saveAI()" style="margin-top:10px;border-color:var(--accent);color:var(--accent2)">保存 AI 配置</button>
     </div>
+    <div class="card" id="v02-settings">
+      <div class="set-label" style="margin-top:0">🧭 备考模式</div>
+      <div class="set-row">
+        <div>
+          <div class="k">压力期模式</div>
+          <div class="d">隐藏连续天数与趋势统计，紧急按钮默认走 60 秒版。<br>压力大的时候，统计只会变成新的负担。</div>
+        </div>
+        <div class="switch" id="sw-ddl" onclick="toggleDdl()"></div>
+      </div>
+      <div class="set-row">
+        <div>
+          <div class="k">担忧时间开始</div>
+          <div class="d">固定时间 + 固定时长，是「担忧推迟」起效的前提。</div>
+        </div>
+        <input type="time" id="in-worrystart" style="width:auto;margin-top:0" onchange="saveWorryCfg()">
+      </div>
+      <div class="set-row">
+        <div>
+          <div class="k">担忧时长</div>
+          <div class="d">研究里有效的是每天固定 30 分钟。</div>
+        </div>
+        <select id="in-worrymin" style="width:auto;background:var(--bg2);border:1px solid var(--line);border-radius:10px;color:var(--fg);font-size:14px;padding:9px" onchange="saveWorryCfg()">
+          <option value="10">10 分钟</option>
+          <option value="15">15 分钟</option>
+          <option value="20">20 分钟</option>
+          <option value="30">30 分钟</option>
+        </select>
+      </div>
+      <div class="set-row">
+        <div>
+          <div class="k">专注舱显示念头标记数</div>
+          <div class="d">关闭后只显示计时，不做任何计数。</div>
+        </div>
+        <div class="switch" id="sw-marks" onclick="toggleMarks()"></div>
+      </div>
+    </div>
     <div class="disclaimer">
       锚 是一个自助应急工具，不替代专业心理治疗。<br>
       如果你经常陷入强迫思维，或伴有强烈痛苦，<br>
       请考虑联系心理医生或拨打心理援助热线<br>
       （如全国 12356 / 北京 010-82951332）。
     </div>
-    <div class="version">锚 · MindAnchor v0.1</div>
+    <div class="version">锚 · MindAnchor v0.2</div>
   </div>
 </div>
 
@@ -609,6 +873,65 @@
   </div>
 </div>
 
+<!-- ================= 分流器（v0.2 核心） ================= -->
+<div id="view-triage" class="view">
+  <div class="wrap">
+    <div class="page-title"><button class="back" onclick="showView('view-home')">←</button>念头分流</div>
+    <div id="tri-stage"></div>
+  </div>
+</div>
+
+<!-- ================= 预期练习（v0.2） ================= -->
+<div id="view-expect" class="view">
+  <div class="wrap">
+    <div class="page-title"><button class="back" onclick="showView('view-home')">←</button>预期练习</div>
+    <div id="exp-stage"></div>
+  </div>
+</div>
+
+<!-- ================= 专注舱（v0.2） ================= -->
+<div id="view-focus" class="view">
+  <div class="wrap">
+    <div class="page-title"><button class="back" onclick="showView('view-home')">←</button>专注舱</div>
+    <div id="focus-stage"></div>
+  </div>
+</div>
+
+<!-- ================= 担忧时间（v0.2） ================= -->
+<div id="view-worry" class="view">
+  <div class="wrap">
+    <div class="page-title"><button class="back" onclick="showView('view-home')">←</button>担忧时间</div>
+    <div id="worry-stage"></div>
+  </div>
+</div>
+
+<!-- ================= 灾难链（v0.2） ================= -->
+<div id="view-chain" class="view">
+  <div class="wrap">
+    <div class="page-title"><button class="back" onclick="showView('view-home')">←</button>灾难链拆解</div>
+    <div id="chain-stage"></div>
+  </div>
+</div>
+
+<!-- ================= 60 秒紧急版覆盖层 ================= -->
+<div id="overlay60">
+  <div class="q60-bar"><i id="q60-progress"></i></div>
+  <div class="ov-top" style="margin-bottom:0">
+    <span class="ov-stage" id="q60-stage">60 秒版 · 正在做题</span>
+    <button class="ov-exit" onclick="abortQuick()">退出 ✕</button>
+  </div>
+  <div class="q60-body" id="q60-body"></div>
+</div>
+
+<!-- ================= 底部导航 ================= -->
+<nav id="tabbar">
+  <button data-nav="view-home"    onclick="showView('view-home')"><span class="ic">🏠</span>首页</button>
+  <button data-nav="view-triage"  onclick="showView('view-triage')"><span class="ic">🧭</span>分流</button>
+  <button data-nav="view-focus"   onclick="showView('view-focus')"><span class="ic">⏱</span>专注</button>
+  <button data-nav="view-history" onclick="showView('view-history')"><span class="ic">📈</span>记录</button>
+  <button data-nav="view-settings" onclick="showView('view-settings')"><span class="ic">⚙️</span>设置</button>
+</nav>
+
 <script>
 /* ================================================================
    锚 · MindAnchor  v0.1
@@ -620,7 +943,12 @@ var S = Object.assign({
   voice:true, vibrate:true, rate:0.95,
   defuse:"这只是大脑的一个警报，不是事实。我注意到我在想……它现在被放在停车场了，晚点再处理。",
   worryTime:"20:00", worryDur:15,
-  aiBase:"https://worldcodes.online/v1", aiKey:"", aiModel:"claude-sonnet-4-6"
+  aiBase:"https://worldcodes.online/v1", aiKey:"", aiModel:"claude-sonnet-4-6",
+  /* --- v0.2 备考模式 --- */
+  ddlMode:false,        // 压力期模式：隐藏连续天数/趋势，紧急按钮默认走 60 秒版
+  worryStart:"21:00",   // 担忧时间开始（刺激控制：固定时间 + 固定时长）
+  worryMin:30,          // 担忧时长（分钟），文献建议 30 分钟
+  showMarks:true        // 专注舱是否显示念头标记数
 }, JSON.parse(localStorage.getItem('ma_settings')||'{}'));
 
 function saveS(){ localStorage.setItem('ma_settings', JSON.stringify(S)); }
@@ -670,7 +998,8 @@ function goFullscreen(){
 function showView(id){
   stopTTS();
   document.querySelectorAll('.view').forEach(function(v){ v.classList.remove('active'); });
-  document.getElementById(id).classList.add('active');
+  var el = document.getElementById(id);
+  if(el) el.classList.add('active');
   window.scrollTo(0,0);
   if(id==='view-history') renderHistory();
   if(id==='view-settings') renderSettings();
@@ -679,6 +1008,26 @@ function showView(id){
   if(id==='view-chat') renderChat();
   if(id==='view-followup') renderFollowup();
   if(id==='view-home') renderHome();
+  /* --- v0.2 --- */
+  if(id==='view-triage') renderTriage();
+  if(id==='view-expect') renderExpect();
+  if(id==='view-focus') renderFocus();
+  if(id==='view-worry') renderWorry();
+  if(id==='view-chain') renderChain();
+  syncNav(id);
+}
+function syncNav(id){
+  document.querySelectorAll('#tabbar button').forEach(function(b){
+    b.classList.toggle('sel', b.dataset.nav === id);
+  });
+}
+function applyDdl(){
+  document.body.classList.toggle('ddl', !!S.ddlMode);
+}
+function toggleDdl(){
+  S.ddlMode = !S.ddlMode; saveS(); applyDdl();
+  renderHome(); renderSettings();
+  if(S.ddlMode) speak('压力期模式已开启。带着它，做今天的题。');
 }
 
 /* ================================================================
@@ -1061,6 +1410,55 @@ function renderHome(){
   }
   var aiWrap = document.getElementById('ai-entry-wrap');
   aiWrap.style.display = S.aiKey ? 'block' : 'none';
+  /* --- v0.2 --- */
+  renderHomeV02();
+}
+function renderHomeV02(){
+  var ddl = document.getElementById('home-ddl');
+  if(ddl){
+    ddl.style.display = S.ddlMode ? 'block' : 'none';
+    ddl.innerHTML = '<div class="ddl-bar"><span>🟠</span>'
+      + '<span>压力期模式：统计已隐藏，紧急按钮走 60 秒版。<br>带着它，做今天的题。</span>'
+      + '<span class="sw-t"><button class="mini-btn" onclick="toggleDdl()">关闭</button></span></div>';
+  }
+  var note = document.getElementById('home-cta-note');
+  if(note){
+    note.textContent = S.ddlMode ? '60 秒版 · 不用离开你的题'
+                                 : '约 5 分钟 · 全程语音引导 · 可随时退出';
+  }
+
+  var q = document.getElementById('home-quick');
+  if(q){
+    var pending = LSget('ma_parked', []).filter(function(p){ return !p.resolved; });
+    var due = pending.filter(function(p){ return p.dueAt && p.dueAt <= Date.now(); });
+    if(due.length){
+      q.innerHTML = '<div class="ddl-bar" style="border-color:rgba(78,201,176,.4);'
+        + 'background:linear-gradient(135deg,rgba(78,201,176,.14),rgba(78,201,176,.04));color:var(--accent2)">'
+        + '<span>🕘</span><span>有 ' + due.length + ' 个念头到处理时间了。<br>'
+        + '现在去处理它——这一步不做，寄存就会退化成压制。</span>'
+        + '<span class="sw-t"><button class="mini-btn acc" onclick="showView(\'view-worry\')">去处理</button></span></div>';
+    } else {
+      q.innerHTML = '';
+    }
+  }
+
+  var st = document.getElementById('home-stats');
+  if(st){
+    if(S.ddlMode){ st.innerHTML = ''; return; }
+    var tri = LSget('ma_triage', []);
+    var today = dayKey(new Date());
+    var todayTri = tri.filter(function(t){ return dayKey(new Date(t.at)) === today; }).length;
+    var exp = LSget('ma_expect', []);
+    var drops = exp.filter(function(c){
+      return typeof c.conf === 'number' && typeof c.post === 'number';
+    }).map(function(c){ return c.conf - c.post; });
+    var avgDrop = drops.length
+      ? Math.round(drops.reduce(function(a, b){ return a + b; }, 0) / drops.length) : null;
+    st.innerHTML =
+        '<div><div class="v">' + todayTri + '</div><div class="k">今天分流</div></div>'
+      + '<div><div class="v">' + (avgDrop === null ? '–' : avgDrop) + '</div><div class="k">平均预期违反度</div></div>'
+      + '<div><div class="v">' + exp.length + '</div><div class="k">证据条数</div></div>';
+  }
 }
 function openFollowup(){
   followupRec = getPendingFollowup();
@@ -1530,6 +1928,28 @@ function renderSettings(){
   document.querySelectorAll('#seg-rate button').forEach(function(b){
     b.classList.toggle('sel', parseFloat(b.dataset.v)===S.rate);
   });
+  /* --- v0.2 --- */
+  var swDdl = document.getElementById('sw-ddl');
+  if(swDdl) swDdl.classList.toggle('on', !!S.ddlMode);
+  var swMk = document.getElementById('sw-marks');
+  if(swMk) swMk.classList.toggle('on', !!S.showMarks);
+  var ws = document.getElementById('in-worrystart');
+  if(ws) ws.value = S.worryStart || '21:00';
+  var wm = document.getElementById('in-worrymin');
+  if(wm) wm.value = String(S.worryMin || 30);
+}
+function toggleMarks(){
+  S.showMarks = !S.showMarks; saveS();
+  renderSettings();
+  if(document.getElementById('view-focus').classList.contains('active')) renderFocus();
+}
+function saveWorryCfg(){
+  var ws = document.getElementById('in-worrystart');
+  var wm = document.getElementById('in-worrymin');
+  if(ws && ws.value) S.worryStart = ws.value;
+  if(wm) S.worryMin = parseInt(wm.value, 10) || 30;
+  saveS();
+  if(document.getElementById('view-worry').classList.contains('active')) renderWorry();
 }
 function toggle(k){
   S[k] = !S[k]; saveS();
@@ -1550,7 +1970,733 @@ function saveAI(){
   speak('AI 配置已保存。');
 }
 
+/* ================================================================
+   v0.2 备考模式
+   ----------------------------------------------------------------
+   证据基础（详见 docs/ERP自助-机制修正与备考方案.md）：
+   · 思维抑制属于「精神中和仪式」，对强迫人群产生悖论性反弹
+     （Janeck 2002 Behav Res Ther：抑制只在 OCD 组出现念头增加，焦虑组/健康组没有）
+   · 反应预防必须覆盖内隐仪式：反复分析、求证、想通（BMJ 2026 OCD 综述）
+   · 起效机制是抑制性学习，核心动作是「推翻预期」，不是让焦虑下降
+     （Craske 2014 / 2022 Behav Res Ther；Craske 2008：恐惧下降幅度与终末水平
+      都不预测疗效）
+   · 冲动强度围绕仪式行为呈倒 U 形，时间窗约 60 秒（Bartoszek 2018 Psychiatry Res）
+   · 担忧推迟 + 刺激控制：固定时间、固定时长、每天 30 分钟
+     （McGowan 2013 Behav Modif；Wahl 2024 Clin Psychol Eur）
+   · 无指导自助 ERP 有效但效应中等、脱落率高（g≈-0.42，脱落 RR≈2.08，
+     2024 Compr Psychiatry）；含 ERP 成分且疗程 > 4 周效果更好（2022 JMIR）
+     → 本模块按「长期每天可用」而非「一次搞定」设计，且不做成败计分
+   ================================================================ */
+
+/* ---------- 通用小工具 ---------- */
+function LSget(k, d){
+  try{ var v = JSON.parse(localStorage.getItem(k)); return (v===null||v===undefined) ? d : v; }
+  catch(e){ return d; }
+}
+function LSset(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+function pad2(n){ return (n<10?'0':'')+n; }
+function fmtTime(ts){
+  var d = new Date(ts);
+  return (d.getMonth()+1)+'/'+d.getDate()+' '+pad2(d.getHours())+':'+pad2(d.getMinutes());
+}
+function startMainHelp(){
+  if(S.ddlMode){ startQuick(); } else { startProtocol(); }
+}
+
+/* ================================================================
+   1. 念头分流器
+   把「该处理的现实问题」和「要确定感的强迫追问」分开。
+   硬约束：出口只有两个（变成待办 / 寄存），不提供「分析一下」——
+   那第三个出口就是强迫本身。
+   ================================================================ */
+var TRI = null;
+
+function triBlank(){
+  return { step:0, text:'', hasAction:null, action:'', worst:'', burden:'', due:'worry',
+           kind:'', doneTitle:'', doneMeta:'' };
+}
+function triReset(){ TRI = triBlank(); renderTriage(); }
+function renderTriage(){
+  if(!TRI) TRI = triBlank();
+  var el = document.getElementById('tri-stage');
+  if(!el) return;
+  el.innerHTML = triHtml();
+  if(TRI.step === 0){
+    var ta = document.getElementById('tri-text');
+    if(ta) ta.focus();
+  }
+}
+function triHtml(){
+  var s = TRI.step;
+
+  if(s === 0){
+    return '<div class="tri-card">'
+      + '<div class="tri-q">现在脑子里在转的是什么？</div>'
+      + '<div class="tri-hint">一句话就行，不用写清楚。写下来，它就不用一直占着大脑。</div>'
+      + '<textarea class="tri-ta" id="tri-text" placeholder="例如：我是不是漏看了哪一条…">' + escapeHtml(TRI.text) + '</textarea>'
+      + '<button class="btn primary block" onclick="triStep0()">下一步</button>'
+      + '</div>';
+  }
+
+  if(s === 1){
+    return '<div class="tri-card">'
+      + '<div class="tri-progress">第 1 问 / 共 2 问</div>'
+      + '<div class="tri-q">这件事，今天有具体动作可做吗？</div>'
+      + '<div class="tri-hint">「有动作」＝你今天真的能动手做的一件事。<br>不是「想清楚」，不是「再确认一下」。</div>'
+      + '<button class="tri-choice" onclick="triChoose(true)"><b>有</b><span>我能说出一件今天就能做的事</span></button>'
+      + '<button class="tri-choice" onclick="triChoose(false)"><b>没有</b><span>它只是想要一个答案、一个确定感</span></button>'
+      + '</div>';
+  }
+
+  if(s === 2){
+    return '<div class="tri-card">'
+      + '<div class="tri-q">今天要做的那个动作是什么？</div>'
+      + '<div class="tri-hint">写成一个能动手的动作。<br>如果写不出来，说明它其实属于「没有动作」那一类——退回上一步选「没有」。</div>'
+      + '<textarea class="tri-ta" id="tri-action" placeholder="例如：把第 3 章错题重做一遍">' + escapeHtml(TRI.action) + '</textarea>'
+      + '<button class="btn primary block" onclick="triSaveTodo()">加入待办</button>'
+      + '<button class="btn ghost block" onclick="triBack(1)">← 返回</button>'
+      + '</div>';
+  }
+
+  if(s === 3){
+    return '<div class="tri-card">'
+      + '<div class="tri-progress">第 2 问 / 共 2 问</div>'
+      + '<div class="tri-q">如果这件事永远没有答案，最坏结果是什么？</div>'
+      + '<div class="tri-hint">说出来就行。你不需要现在解决它。</div>'
+      + '<textarea class="tri-ta" id="tri-worst" placeholder="例如：可能真的有一处我没看到，最后丢分">' + escapeHtml(TRI.worst) + '</textarea>'
+      + '<button class="btn primary block" onclick="triStep3()">下一步</button>'
+      + '<button class="btn ghost block" onclick="triBack(1)">← 返回</button>'
+      + '</div>';
+  }
+
+  if(s === 4){
+    return '<div class="tri-card">'
+      + '<div class="tri-q">那个结果，你能承担吗？</div>'
+      + '<div class="tri-hint">没有标准答案，选最接近的。</div>'
+      + '<button class="tri-choice" onclick="triBurden(\'none\')"><b>其实没什么</b><span>想了也改变不了什么</span></button>'
+      + '<button class="tri-choice" onclick="triBurden(\'hard\')"><b>很难受，但能承担</b><span>不舒服，日子还是过得下去</span></button>'
+      + '<button class="tri-choice" onclick="triBurden(\'no\')"><b>承担不了</b><span>一想到就受不了</span></button>'
+      + '</div>';
+  }
+
+  if(s === 5){
+    var wt = S.worryStart || '21:00';
+    return '<div class="tri-card">'
+      + '<div class="tri-q">什么时候处理它？</div>'
+      + '<div class="tri-hint">到点必须真的去处理，哪怕只 10 分钟。<br>否则大脑会学会「寄存 = 骗我」，寄存就退化成压制了。</div>'
+      + '<div class="chip-row">'
+      +   triChip('worry',    '担忧时间 ' + wt, TRI.due === 'worry')
+      +   triChip('hour',     '1 小时后',      TRI.due === 'hour')
+      +   triChip('tomorrow', '明天同一时间',  TRI.due === 'tomorrow')
+      +   triChip('never',    '不处理，就放着', TRI.due === 'never')
+      + '</div>'
+      + '<button class="btn primary block" onclick="triSavePark()">寄存</button>'
+      + '<button class="btn ghost block" onclick="triBack(3)">← 返回</button>'
+      + '</div>';
+  }
+
+  /* s === 6：完成 */
+  var isTodo = TRI.kind === 'todo';
+  return '<div class="tri-done">'
+    + '<div class="ic">✓</div>'
+    + '<div class="t">' + escapeHtml(TRI.doneTitle) + '</div>'
+    + '<div class="copy">'
+    + (isTodo
+        ? '这件事有动作 → 它已经是一个任务，不是一个念头了。<br>去把它做掉，不用先想清楚。'
+        : '寄存 ≠ 压制。<br>压制是它不许出现；<br>寄存是它出现，我照样做题。')
+    + '</div>'
+    + '<div class="meta">' + TRI.doneMeta + '</div>'
+    + '<button class="btn primary block" onclick="triReset();showView(\'view-home\')">回到首页</button>'
+    + '<button class="btn ghost block" onclick="triReset()">再来一次</button>'
+    + '</div>';
+}
+function triChip(v, label, sel){
+  return '<button class="chip' + (sel ? ' sel' : '') + '" onclick="triDue(\'' + v + '\')">' + label + '</button>';
+}
+function triStep0(){
+  var v = ((document.getElementById('tri-text') || {}).value || '').trim();
+  TRI.text = v || '（没有写下来）';
+  TRI.step = 1; renderTriage();
+}
+function triChoose(has){
+  TRI.hasAction = has;
+  TRI.step = has ? 2 : 3;
+  renderTriage();
+}
+function triBack(n){ TRI.step = n; renderTriage(); }
+function triDue(d){ TRI.due = d; renderTriage(); }
+function triStep3(){
+  var v = ((document.getElementById('tri-worst') || {}).value || '').trim();
+  TRI.worst = v || '（说不清）';
+  TRI.step = 4; renderTriage();
+}
+function triBurden(b){ TRI.burden = b; TRI.step = 5; renderTriage(); }
+
+function triSaveTodo(){
+  var v = ((document.getElementById('tri-action') || {}).value || '').trim();
+  if(!v){ alert('写一个具体的动作'); return; }
+  TRI.action = v;
+  var todos = LSget('ma_todos', []);
+  todos.unshift({ id:uid(), text:v, from:TRI.text, at:Date.now(), done:false });
+  if(todos.length > 300) todos.length = 300;
+  LSset('ma_todos', todos);
+  logTriage('todo');
+  TRI.kind = 'todo';
+  TRI.doneTitle = '已经变成一条待办。';
+  TRI.doneMeta = '「' + escapeHtml(v) + '」<br>它现在是一个动作，不是一个念头。';
+  TRI.step = 6; renderTriage();
+  buzz(30);
+}
+function triDueAt(kind){
+  if(kind === 'hour')     return Date.now() + 3600 * 1000;
+  if(kind === 'tomorrow') return Date.now() + 24 * 3600 * 1000;
+  if(kind === 'never')    return null;
+  var parts = String(S.worryStart || '21:00').split(':');
+  var d = new Date();
+  d.setHours(parseInt(parts[0], 10) || 21, parseInt(parts[1], 10) || 0, 0, 0);
+  if(d.getTime() <= Date.now()) d.setDate(d.getDate() + 1);
+  return d.getTime();
+}
+function triSavePark(){
+  var at = triDueAt(TRI.due);
+  var parked = LSget('ma_parked', []);
+  parked.unshift({
+    id:uid(), text:TRI.text, worst:TRI.worst, burden:TRI.burden,
+    at:Date.now(), dueAt:at, dueKind:TRI.due, resolved:null, resolvedAt:null
+  });
+  if(parked.length > 300) parked.length = 300;
+  LSset('ma_parked', parked);
+  logTriage('park');
+  TRI.kind = 'park';
+  TRI.doneTitle = '已经寄存。';
+  TRI.doneMeta = (TRI.due === 'never'
+      ? '你选择把它放在那儿，不处理。'
+      : '处理时间：' + (at ? fmtTime(at) : '——'))
+    + '<br>到点后打开「担忧时间」处理它。';
+  TRI.step = 6; renderTriage();
+  buzz(30);
+}
+function logTriage(exit){
+  var t = LSget('ma_triage', []);
+  t.unshift({ id:uid(), text:TRI.text, exit:exit, at:Date.now() });
+  if(t.length > 300) t.length = 300;
+  LSset('ma_triage', t);
+}
+
+/* ================================================================
+   2. 60 秒紧急版（正在做题时用）
+   这不是压制。压制是「它不许出现」；
+   这是「它出现，我照样做题」——差别决定了它会不会反弹。
+   ================================================================ */
+var q60Token = 0;
+
+function startQuick(){
+  q60Token++;
+  var tok = q60Token;
+  goFullscreen();
+  buzz([180, 80, 180]);
+  document.getElementById('overlay60').classList.add('active');
+  runQuick(tok);
+}
+function abortQuick(){
+  q60Token++;
+  stopTTS();
+  document.getElementById('overlay60').classList.remove('active');
+  renderHome();
+}
+function q60Progress(p){
+  var e = document.getElementById('q60-progress');
+  if(e) e.style.width = p + '%';
+}
+function q60Stage(t){
+  var e = document.getElementById('q60-stage');
+  if(e) e.textContent = t;
+}
+function q60Body(html){
+  var e = document.getElementById('q60-body');
+  if(e) e.innerHTML = html;
+}
+async function q60BreathCycle(tok){
+  var b = document.getElementById('q60-bub');
+  var l = document.getElementById('q60-bl');
+  var c = document.getElementById('q60-bc');
+  if(!b || !l || !c) return;
+  l.textContent = '吸';          b.className = 'q60-bubble p1'; c.textContent = '第 1 口气';
+  await wait(700);  if(tok !== q60Token) return;
+  l.textContent = '再吸一点';    b.className = 'q60-bubble p2'; c.textContent = '补满';
+  await wait(700);  if(tok !== q60Token) return;
+  l.textContent = '慢慢呼出去';  b.className = 'q60-bubble p3'; c.textContent = '越长越好';
+  await wait(1700); if(tok !== q60Token) return;
+}
+async function runQuick(tok){
+  /* 1 / 4 停 */
+  q60Stage('1 / 4 · 停');
+  q60Progress(8);
+  q60Body('<div class="big" style="color:var(--warn)">停</div>'
+        + '<div class="mid">你正在做题，它插进来了。</div>'
+        + '<div class="sub">先不动。<br>不分析、不回忆、不确认。</div>');
+  speak('停。你正在做题，它插进来了。先不动。');
+  for(var i = 6; i >= 1; i--){
+    await wait(1000);
+    if(tok !== q60Token) return;
+  }
+
+  /* 2 / 4 呼吸 */
+  q60Stage('2 / 4 · 三次呼吸');
+  q60Progress(22);
+  q60Body('<div class="mid" id="q60-bl">准备</div>'
+        + '<div class="q60-bubble" id="q60-bub"></div>'
+        + '<div class="sub" id="q60-bc">双吸 · 长呼</div>');
+  speak('跟着我，三次呼吸。双吸，然后长长地呼出去。');
+  await wait(400); if(tok !== q60Token) return;
+  for(var r = 0; r < 3; r++){
+    q60Progress(22 + r * 15);
+    await q60BreathCycle(tok);
+    if(tok !== q60Token) return;
+  }
+
+  /* 3 / 4 标记 */
+  q60Stage('3 / 4 · 标记');
+  q60Progress(72);
+  q60Body('<div class="mid">这是强迫念头，不是任务。</div>'
+        + '<div class="sub">它出现是正常的。<br>你不需要让它消失。</div>'
+        + '<div class="quote">我现在不需要解决它。</div>');
+  speak('这是强迫念头，不是任务。我现在不需要解决它。');
+  await wait(4500); if(tok !== q60Token) return;
+
+  /* 4 / 4 回到题上 */
+  q60Stage('4 / 4 · 回到题上');
+  q60Progress(100);
+  q60Body('<div class="mid">回去做你刚才那道题。</div>'
+        + '<div class="sub">它可能还在。<br>带着它做，是可以的。</div>'
+        + '<div class="quote">压制是它不许出现；<br>现在是：它出现，我照样做题。</div>'
+        + '<button class="btn primary" style="margin-top:24px;min-width:240px" onclick="finishQuick()">回到题上</button>');
+  speak('回去做你刚才那道题。带着它做，是可以的。');
+}
+function finishQuick(){
+  q60Token++;
+  stopTTS();
+  document.getElementById('overlay60').classList.remove('active');
+  renderHome();
+  buzz(40);
+}
+
+/* ================================================================
+   3. 预期练习（抑制性学习的核心动作）
+   练的不是「焦虑降下来」，而是「你预测的那件事有没有发生」。
+   ================================================================ */
+var EX = null;
+
+function expBlank(){ return { phase:'list', task:'', pred:'', conf:70, actual:'', post:50 }; }
+function expNew(){ EX = expBlank(); EX.phase = 'a'; renderExpect(); }
+function renderExpect(){
+  var el = document.getElementById('exp-stage');
+  if(!el) return;
+  if(!EX) EX = expBlank();
+  if(EX.phase === 'a')    { el.innerHTML = expAHtml();    return; }
+  if(EX.phase === 'b')    { el.innerHTML = expBHtml();    return; }
+  if(EX.phase === 'r')    { el.innerHTML = expRHtml();    return; }
+  el.innerHTML = expListHtml();
+}
+function expListHtml(){
+  var cards = LSget('ma_expect', []);
+  var h = '<div class="tri-card" style="margin-bottom:16px">'
+    + '<div class="tri-q" style="font-size:19px">这里练的不是「焦虑降下来」。</div>'
+    + '<div class="tri-hint">而是：你预测的那件事，到底发生了吗？<br>'
+    + '恐惧下降的幅度、以及结束时还剩多少恐惧，都不能预测疗效——能预测的是预期被推翻。</div>'
+    + '<button class="btn primary block" onclick="expNew()">开始一次练习</button>'
+    + '</div>';
+  h += '<div class="sec-title">证据库 <span class="cnt">' + cards.length + ' 条</span></div>';
+  if(!cards.length){
+    return h + '<div class="empty-soft">还没有记录。<br>做一次练习，第一条证据就出来了。</div>';
+  }
+  cards.slice(0, 20).forEach(function(c){
+    var drop = (typeof c.conf === 'number' && typeof c.post === 'number') ? (c.conf - c.post) : null;
+    h += '<div class="item">'
+      + '<div class="top"><span class="pill acc">违反度 ' + (drop === null ? '–' : drop) + '</span>'
+      + '<span class="pill">' + fmtTime(c.at) + '</span></div>'
+      + '<div class="tx">' + escapeHtml(c.task) + '</div>'
+      + '<div class="mt">预测：' + escapeHtml(c.pred) + '（信 ' + c.conf + '%）<br>'
+      + '实际：' + escapeHtml(c.actual) + '（现在信 ' + c.post + '%）</div>'
+      + '</div>';
+  });
+  return h;
+}
+function expAHtml(){
+  return '<div class="tri-card">'
+    + '<div class="tri-progress">第 1 步 · 做之前</div>'
+    + '<div class="tri-q">你打算做的那件事</div>'
+    + '<textarea class="tri-ta" id="ex-task" placeholder="例如：检查完一遍就不再检查，直接往下做">' + escapeHtml(EX.task) + '</textarea>'
+    + '<div class="tri-q" style="font-size:18px">你预测会发生什么？</div>'
+    + '<div class="tri-hint">写具体的结果。不要写「我会焦虑」——那是感受，不是预测。</div>'
+    + '<textarea class="tri-ta" id="ex-pred" placeholder="例如：会漏掉一处错误，最后丢分">' + escapeHtml(EX.pred) + '</textarea>'
+    + '<div class="tri-hint" style="margin-bottom:2px">你有多相信这个预测？</div>'
+    + '<div class="conf-val" id="ex-conf-v">' + EX.conf + '<small>%</small></div>'
+    + '<input type="range" min="0" max="100" step="5" value="' + EX.conf + '" oninput="EX.conf=parseInt(this.value);document.getElementById(\'ex-conf-v\').innerHTML=this.value+\'<small>%</small>\';">'
+    + '<button class="btn primary block" onclick="expToB()">去做它 →</button>'
+    + '<button class="btn ghost block" onclick="EX=null;renderExpect()">取消</button>'
+    + '</div>';
+}
+function expBHtml(){
+  return '<div class="tri-card">'
+    + '<div class="tri-progress">第 2 步 · 做完之后</div>'
+    + '<div class="tri-hint" style="margin-bottom:12px">你做的：<b style="color:var(--fg)">' + escapeHtml(EX.task) + '</b><br>'
+    + '你预测的：' + escapeHtml(EX.pred) + '（当时信 ' + EX.conf + '%）</div>'
+    + '<div class="tri-q" style="font-size:18px">实际发生了什么？</div>'
+    + '<textarea class="tri-ta" id="ex-actual" placeholder="照实写，包括「没出什么事」"></textarea>'
+    + '<div class="tri-hint" style="margin-bottom:2px">现在，你还相信那个预测吗？</div>'
+    + '<div class="conf-val" id="ex-post-v">50<small>%</small></div>'
+    + '<input type="range" min="0" max="100" step="5" value="50" oninput="EX.post=parseInt(this.value);document.getElementById(\'ex-post-v\').innerHTML=this.value+\'<small>%</small>\';">'
+    + '<button class="btn primary block" onclick="expSave()">看看结果</button>'
+    + '<button class="btn ghost block" onclick="EX.phase=\'a\';renderExpect()">← 返回</button>'
+    + '</div>';
+}
+function expRHtml(){
+  var drop = EX.conf - EX.post;
+  var word = drop >= 40 ? '预期被大幅推翻'
+           : drop >= 15 ? '预期被推翻了一部分'
+           : drop >= -5 ? '预期基本没变'
+           : '反而更相信了';
+  var note = drop >= 15
+    ? '这就是抑制性学习：原来那条恐惧关联没有被擦掉，但你多了一条新记忆——「它没发生」。这条记忆不会因为焦虑又回来而消失。'
+    : '这个任务还没真正挑战到你的预期。下次把难度调高一点，或者换一个更贴近你担心的做法——关键是让「你怕的事」有机会发生或不发生。';
+  return '<div class="tri-card">'
+    + '<div class="tri-q" style="font-size:19px">' + word + '</div>'
+    + '<div class="ev-pair">'
+    + '<div class="ev-box"><div class="l">做之前</div><div class="n before">' + EX.conf + '%</div></div>'
+    + '<div class="ev-box"><div class="l">做完之后</div><div class="n">' + EX.post + '%</div></div>'
+    + '</div>'
+    + '<div class="ev-delta"><div class="big">违反度 ' + drop + '</div>'
+    + '<div class="cap">你预测的：' + escapeHtml(EX.pred) + '<br>实际发生的：' + escapeHtml(EX.actual) + '</div></div>'
+    + '<div class="ev-quote">' + note + '</div>'
+    + '<div class="tri-hint" style="margin-top:16px">焦虑有没有下降不重要。<br>重要的是：你预测的那件事，发生了吗？</div>'
+    + '<button class="btn primary block" onclick="EX=null;renderExpect()">完成</button>'
+    + '</div>';
+}
+function expToB(){
+  var t = ((document.getElementById('ex-task') || {}).value || '').trim();
+  var p = ((document.getElementById('ex-pred') || {}).value || '').trim();
+  if(!t){ alert('先写要做的那件事'); return; }
+  if(!p){ alert('写一个具体的预测'); return; }
+  EX.task = t; EX.pred = p; EX.phase = 'b'; renderExpect();
+}
+function expSave(){
+  var a = ((document.getElementById('ex-actual') || {}).value || '').trim();
+  if(!a){ alert('写一下实际发生了什么'); return; }
+  EX.actual = a;
+  var cards = LSget('ma_expect', []);
+  cards.unshift({ id:uid(), task:EX.task, pred:EX.pred, conf:EX.conf,
+                  actual:EX.actual, post:EX.post, at:Date.now() });
+  if(cards.length > 200) cards.length = 200;
+  LSset('ma_expect', cards);
+  EX.phase = 'r'; renderExpect();
+  buzz(30);
+}
+
+/* ================================================================
+   4. 专注舱
+   目标不是「专注无杂念」，而是「带着念头也能继续」。
+   标记数只做中性记录，不做成绩、不做趋势、不做连续天数。
+   ================================================================ */
+var FOC = { running:false, sec:0, total:25*60, marks:0, int:null, done:false, startedAt:0 };
+
+function renderFocus(){
+  var el = document.getElementById('focus-stage');
+  if(!el) return;
+  el.innerHTML = FOC.done ? focusReportHtml() : focusLiveHtml();
+  focusPaint();
+}
+function focusLiveHtml(){
+  var opts = [15, 25, 45, 60];
+  var h = '<div class="tri-card" style="margin-bottom:14px">'
+    + '<div class="tri-q" style="font-size:19px">带着念头，做完这一轮。</div>'
+    + '<div class="tri-hint">目标不是「专注无杂念」。目标是：念头在场，你也继续做。<br>'
+    + '分心次数不是扣分项——它只是记录。</div>';
+  if(!FOC.running && FOC.sec === 0){
+    h += '<div class="chip-row">' + opts.map(function(m){
+      return '<button class="chip' + (FOC.total === m*60 ? ' sel' : '') + '" onclick="focusSet(' + m + ')">' + m + ' 分钟</button>';
+    }).join('') + '</div>';
+  }
+  h += '</div>';
+  h += '<div class="card">'
+    + '<div class="focus-ring">'
+    + '<svg width="210" height="210" viewBox="0 0 210 210">'
+    + '<circle cx="105" cy="105" r="94"></circle>'
+    + '<circle class="bar" id="focus-bar" cx="105" cy="105" r="94" stroke-dasharray="590.6" stroke-dashoffset="0"></circle>'
+    + '</svg>'
+    + '<div class="t" id="focus-time">--:--</div>'
+    + '</div>'
+    + '<button class="mark-btn" onclick="focusMark()">念头来了'
+    + '<small>点一下就好，不会打断计时</small></button>'
+    + '<div class="mark-dots" id="focus-dots"></div>'
+    + '<div class="focus-note" id="focus-note"></div>'
+    + '</div>'
+    + '<div class="row" style="gap:10px">'
+    + '<button class="btn primary" style="flex:1" id="focus-btn" onclick="focusToggle()">' + (FOC.running ? '暂停' : (FOC.sec > 0 ? '继续' : '开始')) + '</button>'
+    + '<button class="btn" style="flex:1" onclick="focusReset()">重置</button>'
+    + '</div>';
+  return h;
+}
+function focusPaint(){
+  var t = document.getElementById('focus-time');
+  if(t){
+    var left = Math.max(0, FOC.total - FOC.sec);
+    t.innerHTML = pad2(Math.floor(left/60)) + ':' + pad2(left%60) + '<small>剩余</small>';
+  }
+  var bar = document.getElementById('focus-bar');
+  if(bar){
+    var pct = FOC.total ? Math.min(1, FOC.sec / FOC.total) : 0;
+    bar.setAttribute('stroke-dashoffset', String(590.6 * pct));
+  }
+  var dots = document.getElementById('focus-dots');
+  if(dots){
+    var n = S.showMarks ? Math.min(FOC.marks, 60) : 0;
+    var out = '';
+    for(var i = 0; i < n; i++) out += '<i></i>';
+    dots.innerHTML = out;
+  }
+  var note = document.getElementById('focus-note');
+  if(note){
+    note.innerHTML = FOC.marks
+      ? ('已经标记 ' + FOC.marks + ' 次。这不是扣分——它说明你在带着它们继续。')
+      : '还没有标记。有念头就点一下，没有就算了。';
+  }
+}
+function focusSet(m){ FOC.total = m * 60; FOC.sec = 0; renderFocus(); }
+function focusToggle(){
+  if(FOC.running){
+    FOC.running = false;
+    if(FOC.int){ clearInterval(FOC.int); FOC.int = null; }
+  } else {
+    FOC.running = true;
+    if(!FOC.startedAt) FOC.startedAt = Date.now();
+    FOC.int = setInterval(function(){
+      FOC.sec++;
+      if(FOC.sec >= FOC.total){ finishFocus(); return; }
+      focusPaint();
+    }, 1000);
+  }
+  var b = document.getElementById('focus-btn');
+  if(b) b.textContent = FOC.running ? '暂停' : '继续';
+  renderFocus();
+}
+function focusMark(){
+  FOC.marks++;
+  buzz(25);
+  focusPaint();
+}
+function focusReset(){
+  if(FOC.int){ clearInterval(FOC.int); FOC.int = null; }
+  FOC.running = false; FOC.sec = 0; FOC.marks = 0; FOC.done = false; FOC.startedAt = 0;
+  renderFocus();
+}
+function finishFocus(){
+  if(FOC.int){ clearInterval(FOC.int); FOC.int = null; }
+  FOC.running = false;
+  FOC.done = true;
+  var mins = Math.round(FOC.sec / 60);
+  var s = LSget('ma_focus', []);
+  s.unshift({ id:uid(), min:mins, marks:FOC.marks, at:Date.now() });
+  if(s.length > 300) s.length = 300;
+  LSset('ma_focus', s);
+  renderFocus();
+  speak('这一轮结束了。');
+  buzz([40, 60, 40]);
+}
+function focusReportHtml(){
+  var mins = Math.round(FOC.sec / 60);
+  return '<div class="tri-card"><div class="tri-done">'
+    + '<div class="ic">✓</div>'
+    + '<div class="t">这一轮结束了。</div>'
+    + '<div class="copy">你在有干扰的情况下，坐了 ' + mins + ' 分钟。<br>'
+    + (FOC.marks
+        ? ('期间标记了 ' + FOC.marks + ' 次念头。<br>标记不代表失败——它说明你没有停下来跟它纠缠。')
+        : '期间没有标记念头。')
+    + '</div>'
+    + '<div class="meta">分心次数不是成绩，它只是记录。</div>'
+    + '<button class="btn primary block" onclick="focusReset()">再来一轮</button>'
+    + '<button class="btn ghost block" onclick="showView(\'view-home\')">回首页</button>'
+    + '</div></div>';
+}
+
+/* ================================================================
+   5. 担忧时间（刺激控制）
+   固定时间 + 固定时长，每天一次；到点真的去处理；
+   允许「时间到了，还是没答案」——这一步比想通更重要。
+   ================================================================ */
+var WRY = { running:false, sec:0, total:30*60, int:null };
+
+function renderWorry(){
+  var el = document.getElementById('worry-stage');
+  if(!el) return;
+  el.innerHTML = WRY.running ? worrySessionHtml() : worryListHtml();
+  if(WRY.running) worryPaint();
+}
+function worryListHtml(){
+  var all = LSget('ma_parked', []);
+  var pending = all.filter(function(p){ return !p.resolved; });
+  var done = all.filter(function(p){ return p.resolved; });
+  var h = '<div class="tri-card" style="margin-bottom:16px">'
+    + '<div class="tri-q" style="font-size:19px">每天固定一段，专门用来想。</div>'
+    + '<div class="tri-hint">担忧时间：<b style="color:var(--accent2)">' + (S.worryStart || '21:00') + '</b> 起，'
+    + (S.worryMin || 30) + ' 分钟。<br>其他时间它冒出来，就告诉自己：留到那个时候。</div>'
+    + '<button class="btn primary block" onclick="worryStart()">现在开始担忧时间</button>'
+    + '</div>';
+  h += '<div class="sec-title">待处理 <span class="cnt">' + pending.length + '</span></div>';
+  if(!pending.length){
+    h += '<div class="empty-soft">没有待处理的。<br>去「分流」把念头寄存进来。</div>';
+  }
+  pending.forEach(function(p){
+    var overdue = p.dueAt && p.dueAt <= Date.now();
+    h += '<div class="item">'
+      + '<div class="top"><span class="pill ' + (overdue ? 'warn' : '') + '">'
+      + (p.dueAt ? ((overdue ? '到点了 · ' : '') + fmtTime(p.dueAt)) : '不处理') + '</span>'
+      + '<span class="pill">' + fmtTime(p.at) + ' 寄存</span></div>'
+      + '<div class="tx">' + escapeHtml(p.text) + '</div>'
+      + (p.worst ? '<div class="mt">最坏结果：' + escapeHtml(p.worst) + '</div>' : '')
+      + '<div style="margin-top:10px">'
+      + '<button class="mini-btn" onclick="worryResolve(\'' + p.id + '\',\'done\')">处理完了</button> '
+      + '<button class="mini-btn" onclick="worryResolve(\'' + p.id + '\',\'unresolved\')">没答案，先放着</button>'
+      + '</div></div>';
+  });
+  if(done.length){
+    h += '<div class="sec-title">已处理 <span class="cnt">' + done.length + '</span></div>';
+    done.slice(0, 10).forEach(function(p){
+      h += '<div class="item">'
+        + '<div class="top"><span class="pill done">' + (p.resolved === 'done' ? '处理完了' : '带着不确定结束') + '</span>'
+        + '<span class="pill">' + fmtTime(p.resolvedAt || p.at) + '</span></div>'
+        + '<div class="tx" style="color:var(--dim)">' + escapeHtml(p.text) + '</div></div>';
+    });
+  }
+  return h;
+}
+function worrySessionHtml(){
+  var pending = LSget('ma_parked', []).filter(function(p){ return !p.resolved; });
+  var h = '<div class="tri-card" style="margin-bottom:16px">'
+    + '<div class="tri-progress">担忧时间进行中</div>'
+    + '<div class="worry-clock" id="worry-clock">--:--</div>'
+    + '<div class="tri-hint" style="margin-bottom:0">只在这段时间里处理它们。到点就停，不管有没有答案。<br>'
+    + '允许带着不确定结束——这一步比「想通」更重要。</div>'
+    + '</div>';
+  if(!pending.length){
+    h += '<div class="empty-soft">这一轮没有待处理的念头。<br>那就安静地待满时间，或者提前结束。</div>';
+  }
+  pending.forEach(function(p){
+    h += '<div class="worry-item">'
+      + '<div class="tx">' + escapeHtml(p.text) + '</div>'
+      + '<div class="ops">'
+      + '<button class="mini-btn acc" onclick="worryResolve(\'' + p.id + '\',\'done\')">处理完了</button>'
+      + '<button class="mini-btn" onclick="worryResolve(\'' + p.id + '\',\'unresolved\')">没答案，时间到了</button>'
+      + '</div></div>';
+  });
+  h += '<button class="btn primary block" onclick="worryStop()">结束这一轮</button>';
+  return h;
+}
+function worryStart(){
+  WRY.running = true; WRY.sec = 0;
+  WRY.total = (S.worryMin || 30) * 60;
+  if(WRY.int) clearInterval(WRY.int);
+  WRY.int = setInterval(function(){
+    WRY.sec++;
+    if(WRY.sec >= WRY.total){ worryStop(); return; }
+    worryPaint();
+  }, 1000);
+  renderWorry();
+  speak('担忧时间开始。只在这段时间里处理它们。');
+}
+function worryPaint(){
+  var c = document.getElementById('worry-clock');
+  if(!c) return;
+  var left = Math.max(0, WRY.total - WRY.sec);
+  c.textContent = pad2(Math.floor(left/60)) + ':' + pad2(left%60);
+}
+function worryStop(){
+  if(WRY.int){ clearInterval(WRY.int); WRY.int = null; }
+  WRY.running = false;
+  renderWorry();
+  speak('这一轮结束了。');
+}
+function worryResolve(id, how){
+  var all = LSget('ma_parked', []);
+  all.forEach(function(p){
+    if(p.id === id){ p.resolved = how; p.resolvedAt = Date.now(); }
+  });
+  LSset('ma_parked', all);
+  buzz(25);
+  renderWorry();
+}
+
+/* ================================================================
+   6. 灾难链拆解
+   备考期最常见的燃料：把「今天没专注」直接连到「这辈子完了」。
+   写出来，只有第 1 环是今天的事，后面全是推测。
+   ================================================================ */
+var CHN = { steps:[] };
+
+function renderChain(){
+  var el = document.getElementById('chain-stage');
+  if(!el) return;
+  el.innerHTML = chainHtml();
+}
+function chainHtml(){
+  var h = '<div class="tri-card" style="margin-bottom:16px">'
+    + '<div class="tri-q" style="font-size:19px">把那条链写出来。</div>'
+    + '<div class="tri-hint">「今天专注不了 → 考不上 → 找不到好工作 → …」<br>'
+    + '写出来你会看到：只有第一环是今天的事，后面全是推测。</div>'
+    + '</div>';
+  if(CHN.steps.length){
+    h += '<div class="card">';
+    CHN.steps.forEach(function(s, i){
+      h += '<div class="chain-step">'
+        + '<div class="chain-idx' + (i === 0 ? ' real' : '') + '">' + (i + 1) + '</div>'
+        + '<div class="chain-body">' + escapeHtml(s)
+        + '<div class="chain-tag' + (i === 0 ? '' : ' spec') + '">'
+        + (i === 0 ? '今天能做的事' : '这是推测，不是事实') + '</div>'
+        + '</div></div>';
+    });
+    h += '</div>';
+    if(CHN.steps.length > 1){
+      h += '<div class="ev-quote" style="margin-bottom:14px">今天要处理的只有第 1 环：<br>'
+        + '<b style="color:var(--fg)">' + escapeHtml(CHN.steps[0]) + '</b><br>后面的都还没有发生。</div>';
+    }
+    h += '<button class="btn primary block" onclick="chainSave()">存下来</button>';
+  }
+  h += '<div class="card">'
+    + '<div class="small muted" style="margin-bottom:8px">加一环</div>'
+    + '<div class="add-row">'
+    + '<input type="text" id="chain-input" placeholder="例如：今天专注不了">'
+    + '<button class="btn small" onclick="chainAdd()">加一环</button>'
+    + '</div>'
+    + (CHN.steps.length ? '<button class="btn ghost block" onclick="chainReset()">清空重写</button>' : '')
+    + '</div>';
+  return h;
+}
+function chainAdd(){
+  var v = ((document.getElementById('chain-input') || {}).value || '').trim();
+  if(!v) return;
+  CHN.steps.push(v);
+  renderChain();
+  setTimeout(function(){
+    var i = document.getElementById('chain-input');
+    if(i) i.focus();
+  }, 30);
+}
+function chainReset(){ CHN.steps = []; renderChain(); }
+function chainSave(){
+  var all = LSget('ma_chains', []);
+  all.unshift({ id:uid(), steps:CHN.steps.slice(), at:Date.now() });
+  if(all.length > 100) all.length = 100;
+  LSset('ma_chains', all);
+  CHN.steps = [];
+  renderChain();
+  speak('存下来了。');
+  buzz(30);
+}
+
 /* ---------- 初始化 ---------- */
+applyDdl();
+syncNav('view-home');
 renderDone();
 renderSettings();
 renderHome();
