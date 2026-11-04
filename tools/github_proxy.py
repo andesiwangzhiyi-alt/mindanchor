@@ -31,16 +31,32 @@ import time
 import urllib.request
 
 DOH = "https://doh.pub/dns-query"
+
+# DoH 有时只返回被墙的那几个 IP（GitHub 的 IP 池里只有部分段可达）。
+# 这里补一份已知可用的兜底地址，DoH 结果全部连不上时逐个试。
+EXTRA_IPS = {
+    "github.com": ["140.82.112.3", "140.82.112.4", "140.82.113.3", "140.82.113.4",
+                   "140.82.114.3", "140.82.114.4", "140.82.116.3", "140.82.116.4",
+                   "140.82.121.3", "140.82.121.4", "20.205.243.166", "20.27.177.113",
+                   "20.200.245.247", "20.233.83.145"],
+    "api.github.com": ["140.82.112.6", "140.82.113.6", "140.82.114.6", "140.82.116.6",
+                       "140.82.121.6", "20.205.243.168", "20.27.177.116", "20.200.245.245"],
+    "codeload.github.com": ["140.82.112.9", "140.82.112.10", "140.82.113.9", "20.205.243.165"],
+    "raw.githubusercontent.com": ["185.199.108.133", "185.199.109.133", "185.199.110.133", "185.199.111.133"],
+    "objects.githubusercontent.com": ["185.199.108.133", "185.199.109.133", "185.199.110.133", "185.199.111.133"],
+    "github.githubassets.com": ["185.199.108.154", "185.199.109.154", "185.199.110.154"],
+}
 _cache = {}
+_good = {}
 _lock = threading.Lock()
 BUFSIZE = 65536
 
 
-def resolve(host):
-    """DoH 解析 A 记录，带 5 分钟缓存。host 已经是 IP 时直接返回。"""
+def resolve_all(host):
+    """DoH 解析全部 A 记录，带 5 分钟缓存。host 已经是 IP 时直接返回。"""
     try:
         socket.inet_aton(host)
-        return host
+        return [host]
     except OSError:
         pass
     now = time.time()
@@ -55,9 +71,29 @@ def resolve(host):
     ips = [a["data"] for a in data.get("Answer", []) if a.get("type") == 1]
     if not ips:
         raise OSError("no A record for " + host)
+    # 上次连通的 IP 排到最前（GitHub 的 IP 池里有的段被墙、有的通）
+    good = _good.get(host)
+    if good and good in ips:
+        ips = [good] + [i for i in ips if i != good]
+    for ip in EXTRA_IPS.get(host, []):
+        if ip not in ips:
+            ips.append(ip)
     with _lock:
-        _cache[host] = (ips[0], now)
-    return ips[0]
+        _cache[host] = (ips, now)
+    return ips
+
+
+def connect_host(host, port, timeout=6):
+    """按 DoH 给出的 IP 逐个尝试；连通后记住这个 IP 供下次优先使用。"""
+    last = None
+    for ip in resolve_all(host):
+        try:
+            s = socket.create_connection((ip, port), timeout=timeout)
+            _good[host] = ip
+            return s
+        except OSError as e:  # noqa: PERF203
+            last = e
+    raise OSError(f"no reachable IP for {host}:{port} ({last})")
 
 
 def pump(src, dst):
@@ -101,8 +137,7 @@ class Handler(socketserver.BaseRequestHandler):
             host, _, port = target.partition(":")
             port = int(port or 443)
             try:
-                ip = resolve(host)
-                upstream = socket.create_connection((ip, port), timeout=15)
+                upstream = connect_host(host, port)
             except Exception as e:  # noqa: BLE001
                 sys.stderr.write(f"[github_proxy] CONNECT {target} 失败: {e}\n")
                 try:
@@ -121,8 +156,7 @@ class Handler(socketserver.BaseRequestHandler):
         try:
             from urllib.parse import urlsplit
             u = urlsplit(target if "://" in target else "http://" + target)
-            ip = resolve(u.hostname)
-            upstream = socket.create_connection((ip, u.port or 80), timeout=15)
+            upstream = connect_host(u.hostname, u.port or 80)
             path = u.path or "/"
             if u.query:
                 path += "?" + u.query
